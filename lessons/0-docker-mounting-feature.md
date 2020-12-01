@@ -25,3 +25,32 @@ services:
 ```
 
 ## Volume mount
+
+1. ทำการ run คำสั่ง docker
+
+```
+docker run -dit -p 3306:3306 --mount type=volume,src=mysql_data,target=/var/lib/mysql --rm --name mysql_db mysql
+```
+
+Note: Volume mount in docker-compose (in short syntax)
+
+```
+version: "3"
+services:
+  db_sql:
+    container_name: "mysql_db"
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - "mysql_data:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456789"
+    ports:
+      - "3306:3306"
+    cap_add:
+      - SYS_NICE
+volumes:
+  mysql_data:
+
+```
