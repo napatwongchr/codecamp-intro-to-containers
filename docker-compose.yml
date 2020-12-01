@@ -10,6 +10,10 @@ services:
     build: ./backend
     ports:
       - "3001:3001"
+    volumes:
+      - type: bind
+        source: ./backend
+        target: /app
     environment:
       MONGO_CONNECTION_STRING: mongodb://localhost:27017
   db:
