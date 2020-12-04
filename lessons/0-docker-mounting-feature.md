@@ -29,7 +29,7 @@ services:
 1. ทำการ run คำสั่ง docker
 
 ```
-docker run -dit -p 3306:3306 --mount type=volume,src=mysql_data,target=/var/lib/mysql --rm --name mysql_db mysql
+docker run -dit -p 3306:3306 -e MYSQL_ROOT_PASSWORD="123456789" --mount type=volume,src=mysql_data,target=/var/lib/mysql --rm --name mysql_db mysql
 ```
 
 Note: Volume mount in docker-compose (in short syntax)
